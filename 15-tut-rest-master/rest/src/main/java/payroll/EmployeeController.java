@@ -54,8 +54,11 @@ class EmployeeController {
 	@GetMapping("/employees/{id}")
 	Resource<Employee> one(@PathVariable Long id) {
 		
-		Employee employee = repository.findById(id)
-			.orElseThrow(() -> new EmployeeNotFoundException(id));
+		Employee employee = repository
+			.findById(id)
+			.orElseThrow(
+				() -> new EmployeeNotFoundException(id)
+			);
 		
 		return new Resource<>(
 			employee,
