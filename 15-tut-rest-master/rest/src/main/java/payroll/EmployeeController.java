@@ -36,8 +36,10 @@ class EmployeeController {
 				linkTo(methodOn(EmployeeController.class).all()).withRel("employees")))
 			.collect(Collectors.toList());
 		
-		return new Resources<>(employees,
-			linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
+		return new Resources<>(
+			employees,
+			linkTo(methodOn(EmployeeController.class).all()).withSelfRel()
+		);
 	}
 	// end::get-aggregate-root[]
 
@@ -55,9 +57,11 @@ class EmployeeController {
 		Employee employee = repository.findById(id)
 			.orElseThrow(() -> new EmployeeNotFoundException(id));
 		
-		return new Resource<>(employee,
+		return new Resource<>(
+			employee,
 			linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
-			linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
+			linkTo(methodOn(EmployeeController.class).all()).withRel("employees")
+		);
 	}
 	// end::get-single-item[]
 
